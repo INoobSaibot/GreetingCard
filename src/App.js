@@ -6,7 +6,7 @@ function App() {
   let getParamsObject = ([...(new URLSearchParams(window.location.search))]).reduce((prev,curr)=>(Object.assign(prev,{[curr[0]]:curr[1]})),{})
   let decodedString = atob(getParamsObject.m)
   // decodedString = atob('dGhlIHpvbmU=')
-  const [value, setValue] = useState(decodedString)
+  const [value] = useState(decodedString)
 
   return (
     <div className ="container">
