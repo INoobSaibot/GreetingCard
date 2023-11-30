@@ -4,7 +4,17 @@ import './App.css';
 
 function App() {
   let getParamsObject = ([...(new URLSearchParams(window.location.search))]).reduce((prev,curr)=>(Object.assign(prev,{[curr[0]]:curr[1]})),{})
-  let decodedString = atob(getParamsObject.m)
+  let decodedString = 'default message'
+  try {
+  decodedString = atob(getParamsObject.m)
+  } catch(error) {
+    // default handled above
+    if(! getParamsObject?.m){
+      console.log('no params, use default')
+    } else {
+      console.error(`${getParamsObject?.m} can not be decoded from base 64 using atob function, is it correctly base 64 string using btoa function?`)
+    }
+  }
   // decodedString = atob('dGhlIHpvbmU=')
   const [value] = useState(decodedString)
 
