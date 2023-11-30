@@ -8,6 +8,9 @@ function App() {
   console.log('use btoa("someMessageText"), then added it to the url like this... url?codedStringFromFunction')
   console.log(`${window.location.origin}?m=codedStringFrom_btoaFunction`)
   console.log(`${window.location.origin}?m=R3JlZXRpbmdz`)
+
+  console.log(`also now you can just type 'generateUrl('message') in the console to get a custom url made`)
+  // console.log(generateUrl('yooooooooeeee')  )
   try {
   decodedString = atob(getParamsObject.m)
   } catch(error) {
