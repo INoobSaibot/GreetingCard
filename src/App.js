@@ -6,6 +6,8 @@ function App() {
   let getParamsObject = ([...(new URLSearchParams(window.location.search))]).reduce((prev,curr)=>(Object.assign(prev,{[curr[0]]:curr[1]})),{})
   let decodedString = 'default message'
   console.log('use btoa("someMessageText"), then added it to the url like this... url?codedStringFromFunction')
+  console.log(`${window.location.origin}?m=codedStringFrom_btoaFunction`)
+  console.log(`${window.location.origin}?m=R3JlZXRpbmdz`)
   try {
   decodedString = atob(getParamsObject.m)
   } catch(error) {
