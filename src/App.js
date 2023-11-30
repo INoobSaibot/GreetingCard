@@ -1,24 +1,18 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+  let getParamsObject = ([...(new URLSearchParams(window.location.search))]).reduce((prev,curr)=>(Object.assign(prev,{[curr[0]]:curr[1]})),{})
+  let decodedString = atob(getParamsObject.m)
+  // decodedString = atob('dGhlIHpvbmU=')
+  const [value, setValue] = useState(decodedString)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className ="container">
+    <span className="text1">make {value}</span>
+    <span className="text2">Great Again!</span>
+</div>
   );
 }
 
