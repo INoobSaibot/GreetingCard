@@ -8,7 +8,7 @@ function App(){
     if(hackRanCount > 0) {return};
     hackRanCount++; // shouldnt need this, its a hack, idk why its running twice!
     console.log(document)
-    document.addEventListener('keyup', (e) => {
+    document.addEventListener('keydown', (e) => {
        handleKeyPress(e)
       }, true)
   }, []);
@@ -28,11 +28,14 @@ function App(){
     codes.push(arr.toString().replace(/,/g, ''));
   }
 
-  let code = ['ArrowUp', 'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'ArrowLeft']
-  addCode(code);
+  addCode(['ArrowUp', 'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'ArrowLeft'])
   addCode('abcd')
-  code ='abcd'
-  codes.push(code)
+  addCode('iddqd')
+  addCode('idkfa')
+  addCode('abcd')
+  addCode('ab')
+
+  
   const handleKeyPress = (e) => {
     // console.log(e)
     console.log(e.key)
@@ -41,8 +44,7 @@ function App(){
     timeOut = setTimeout( ()=> {
       keyPressesArr = ''
     },1500)
-    console.log(keyPressesArr)
-    console.log(keyPressesArr.includes(code))
+    
     codes.forEach((code)=> {
       if(keyPressesArr.includes(code)){
         handleCodePressed()
