@@ -11,7 +11,7 @@ function App(){
     document.addEventListener('keydown', (e) => {
        handleKeyPress(e)
       }, true)
-  }, []);
+  }, );
 
   const [count, setCount] = useState(0);
 
@@ -33,7 +33,7 @@ function App(){
   addCode('iddqd')
   addCode('idkfa')
   addCode('abcd')
-  addCode('ab')
+  // addCode('ab')
 
   
   const handleKeyPress = (e) => {
