@@ -1,5 +1,7 @@
-// import logo from './logo.svg';
 import { useEffect, useState } from 'react';
+import {BrowserRouter as Router, Route, Routes,} from "react-router-dom";
+import GreetingGenerator from "./pages/greeting-generator";
+
 import './App.css';
 let hackRanCount = 0;
 
@@ -7,7 +9,7 @@ function App(){
   useEffect(()=> {
     if(hackRanCount > 0) {return};
     hackRanCount++; // shouldnt need this, its a hack, idk why its running twice!
-    console.log(document)
+    // console.log(document)
     document.addEventListener('keydown', (e) => {
        handleKeyPress(e)
       }, true)
@@ -54,33 +56,42 @@ function App(){
   }
 
   const handleCodePressed = () => {
-    alert('coooooodes')
+    console.log('coooooodes')
     keyPressesArr = ''
+    if(window.location.href.includes('/greeting-generator')){return}
+    window.location.href = '/greeting-generator';
   }
 
-  return <Greeting count={count}></Greeting>
+  return <Router>
+    <Routes>
+      <Route exact path="/" element={<Greeting count={count}></Greeting>}></Route>
+      <Route exact path="/greeting-generator" element={<GreetingGenerator></GreetingGenerator>}></Route>
+    </Routes>
+  </Router>
+  return
 }
+
 
 function Greeting() {
   let getParamsObject = ([...(new URLSearchParams(window.location.search))]).reduce((prev,curr)=>(Object.assign(prev,{[curr[0]]:curr[1]})),{})
-  let decodedString = 'default message'
-  // console.log('use btoa("someMessageText"), then added it to the url like this... url?codedStringFromFunction')
-  // console.log(`${window.location.origin}?m=codedStringFrom_btoaFunction`)
-  // console.log(`${window.location.origin}?m=R3JlZXRpbmdz`)
+  let decodedString = 'Greetings'
 
   console.log(`also now you can just type 'generateUrl('message') in the console to get a custom url made`)
-  // console.log(generateUrl('yooooooooeeee')  )
   try {
   decodedString = atob(getParamsObject.m)
+    if(decodedString.length == 0 ){
+      decodedString = 'Greetings'
+    }
   } catch(error) {
     // default handled above
+    console.log(getParamsObject?.m?.length())
     if(! getParamsObject?.m){
       console.log('no params, use default')
     } else {
       console.error(`${getParamsObject?.m} can not be decoded from base 64 using atob function, is it correctly base 64 string using btoa function?`)
     }
   }
-  // decodedString = atob('dGhlIHpvbmU=')
+
   const [value] = useState(decodedString)
 
   return (
