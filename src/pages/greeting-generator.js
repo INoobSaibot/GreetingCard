@@ -15,7 +15,7 @@ const GreetingGenerator = () => {
     }
 
     const buildUrl = (string='') => {
-        let param = `\?m=${string}`
+        let param = `/?m=${string}`
         let customUrl = window.location.origin+param
 
         console.log(customUrl)
