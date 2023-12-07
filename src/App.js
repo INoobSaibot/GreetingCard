@@ -11,8 +11,8 @@ function App(){
     hackRanCount++; // shouldnt need this, its a hack, idk why its running twice!
     // console.log(document)
     document.addEventListener('keydown', (e) => {
-       handleKeyPress(e)
-      }, true)
+      handleKeyPress(e)
+    }, true)
   }, );
 
   const [count, setCount] = useState(0);
@@ -37,7 +37,7 @@ function App(){
   addCode('abcd')
   // addCode('ab')
 
-  
+
   const handleKeyPress = (e) => {
     // console.log(e)
     console.log(e.key)
@@ -46,13 +46,13 @@ function App(){
     timeOut = setTimeout( ()=> {
       keyPressesArr = ''
     },1500)
-    
+
     codes.forEach((code)=> {
       if(keyPressesArr.includes(code)){
         handleCodePressed()
       }
     })
-    
+
   }
 
   const handleCodePressed = () => {
@@ -68,7 +68,6 @@ function App(){
       <Route exact path="/greeting-generator" element={<GreetingGenerator></GreetingGenerator>}></Route>
     </Routes>
   </Router>
-  return
 }
 
 
@@ -78,8 +77,8 @@ function Greeting() {
 
   console.log(`also now you can just type 'generateUrl('message') in the console to get a custom url made`)
   try {
-  decodedString = atob(getParamsObject.m)
-    if(decodedString.length == 0 ){
+    decodedString = atob(getParamsObject.m)
+    if(decodedString.length === 0 ){
       decodedString = 'Greetings'
     }
   } catch(error) {
@@ -95,10 +94,10 @@ function Greeting() {
   const [value] = useState(decodedString)
 
   return (
-    <div className ="container">
-    <span className="text1">make {value}</span>
-    <span className="text2">Great Again!</span>
-</div>
+      <div className ="container">
+        <span className="text1">make {value}</span>
+        <span className="text2">Great Again!</span>
+      </div>
   );
 }
 
